@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
 exec \
-	s6-setuidgid abc lsyncd -nodaemon -insist /config/lsyncd.lua
+	s6-setuidgid root lsyncd -nodaemon -insist /config/lsyncd.lua
