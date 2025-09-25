@@ -1,9 +1,11 @@
 FROM lsiobase/alpine:3.19
 
-RUN apk add --no-cache lsyncd openssh-client
+RUN apk add --no-cache lsyncd openssh-client git lua5.4 lua5.4-dev lua5.4-socket luarocks \
+    && ln -s /usr/bin/luarocks-5.4 /usr/bin/luarocks
 
-RUN apk add --no-cache lua5.3 lua5.3-dev lua5.3-rocks && \
-    lua5.3-rocks install crontab
+RUN luarocks install lua-crontab
+
+RUN apk del git
     
 COPY root/ /
 RUN chmod +x /etc/services.d/lsyncd/run && \
